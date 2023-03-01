@@ -28,25 +28,21 @@
     src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
     dest: /tmp
     remote_src: yes
+## remote_src:Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
+
+- name: load Catalogue Service Schema
+  community.mongodb.mongodb_shell:
+    file: "//tmp/mongodb/catalogue.js"
+    idempotent: yes
+    ## idempotent it wont recreate the schema if yes
+
+- name: load User Schema
+  community.mongodb.mongodb_shell:
+    file: "//tmp/mongodb/users.js"
+    idempotent: yes
+    ## if idempotent yes, it wont recreate the schema if it exists
 
 
-## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
-
-#echo "extracting schema files"
-#unzip -o mongodb.zip &>>$LOG_FILE
-#StatusCheck $?
-#
-#
-#cd mongodb-main
-#
-#echo "load Catalogue Service Schema"
-#mongo < catalogue.js &>>$LOG_FILE
-#StatusCheck $?
-#
-#echo "Load User Service Schema"
-#mongo < users.js &>>$LOG_FILE
-#StatusCheck $?
-#
 ### Load schema can be done using loops also
 ##for schema in catalogue.js users.js ; do
 ##  mongo < ${schema} &>>$LOG_FILE
