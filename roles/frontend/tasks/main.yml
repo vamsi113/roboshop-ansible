@@ -3,11 +3,6 @@
     name: nginx
     state: installed
 
-- name: start Nginx Service
-  ansible.builtin.systemd:
-    state: started
-    name: nginx
-
 - name: removing old content
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -24,6 +19,7 @@
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html/
     remote_src: yes
+    ## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
 
 ##here in shell scripting, config file will be moved same as zip file. but, in ansible as a CMT can help to use in ansible playbook.
 - name: Copy Roboshop Nginx Config File
@@ -31,8 +27,11 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-
-
+- name: start Nginx Service
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: yes
 #
 #  echo "Updating front config file"
 #  sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/' -e '/cart/ s/localhost/cart.roboshop.internal/' -e '/shipping/ s/localhost/shipping.roboshop.internal/' -e '/payment/ s/localhost/payment.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG_FILE
