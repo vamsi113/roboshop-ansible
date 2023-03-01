@@ -16,7 +16,7 @@
 #  npm install &>>${LOG_FILE}
 #  StatusCheck $?
 
-- name: Install packages based on package.json.
+- name: Install packages based on package.nodejs
   npm:
     path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop
