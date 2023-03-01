@@ -15,7 +15,11 @@
 #  echo "installing nodejs dependancies"
 #  npm install &>>${LOG_FILE}
 #  StatusCheck $?
-#
+
+- name: Install packages based on package.json.
+  npm:
+    path: /home/roboshop/{{COMPONENT}}
+
 #
 #
 #  SYSTEMD_SETUP
