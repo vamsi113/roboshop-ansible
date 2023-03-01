@@ -23,7 +23,7 @@
   ansible.builtin.copy:
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html/
-    
+    remote_src: yes
 
 ##here in shell scripting, config file will be moved same as zip file. but, in ansible as a CMT can help to use in ansible playbook.
 - name: Copy Roboshop Nginx Config File
