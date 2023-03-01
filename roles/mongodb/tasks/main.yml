@@ -51,3 +51,5 @@
   loop:
       - catalogue
       - users
+
+- name:

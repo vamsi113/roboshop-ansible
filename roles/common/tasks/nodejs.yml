@@ -1,0 +1,21 @@
+- name: Setup NodeJS Repo
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: installing nodejs
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+#  APP_PRESETUP
+## imporrting role task of one file(roles/common/task/app-presetytup.yaml) to same role task of another file(roles/common/task/nodejs.yml)
+- name: Import App Pre-setup task file
+  ansible.builtin.import_tasks: app-presetup.yml
+
+
+#  echo "installing nodejs dependancies"
+#  npm install &>>${LOG_FILE}
+#  StatusCheck $?
+#
+#
+#
+#  SYSTEMD_SETUP

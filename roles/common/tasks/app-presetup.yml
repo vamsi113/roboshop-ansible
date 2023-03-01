@@ -1,0 +1,49 @@
+#  id roboshop &>>${LOG_FILE}
+#    if [ $? -ne 0 ]; then
+#      echo "adding Roboshop application User "
+#      useradd roboshop &>>${LOG_FILE}
+#      StatusCheck $?
+#    fi
+#
+#
+#    echo "download ${COMPONENT} application code"
+#    curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG_FILE}
+#    StatusCheck $?
+#
+#    cd /home/roboshop
+#
+#    echo "remove old content"
+#    rm -rf ${COMPONENT} &>>${LOG_FILE}
+#    StatusCheck $?
+#
+#    echo "Extracting ${COMPONENT} application code"
+#    unzip /tmp/${COMPONENT}.zip &>>${LOG_FILE}
+#    StatusCheck $?
+#
+#    mv ${COMPONENT}-main ${COMPONENT}
+#    cd /home/roboshop/${COMPONENT}
+
+- name: adding Roboshop application User
+  ansible.builtin.user:
+    name: roboshop
+
+- name: downloading Nginx web content and Extract it
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+
+- name: Copy Extracted Content
+  ansible.builtin.copy:
+    src: /tmp/catalogue-main/
+    dest: /home/roboshop/{{COMPONENT}}
+    remote_src: yes
+    ## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
+
+
+- name: removing old content
+  ansible.builtin.file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: absent
+
