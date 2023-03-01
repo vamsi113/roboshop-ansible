@@ -19,7 +19,13 @@
     dest: /tmp
     remote_src: yes
 
+- name: Copy Extracted Content
+  ansible.builtin.copy:
+    src: /tmp
+    dest: /usr/share/nginx/html
+    remote_src: yes
 
+    
 #  echo extracting web content
 #  unzip /tmp/frontend.zip &>>$LOG_FILE
 #  mv frontend-main/static/* . &>>$LOG_FILE
