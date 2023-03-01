@@ -16,8 +16,9 @@
 - name: downloading Nginx web content and Extract it
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /usr/share/nginx/html
+    dest: /tmp
     remote_src: yes
+
 
 #  echo extracting web content
 #  unzip /tmp/frontend.zip &>>$LOG_FILE
