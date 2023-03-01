@@ -45,7 +45,7 @@
     dest: /home/roboshop/{{COMPONENT}}
     remote_src: yes
     ## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
-
+  become_user: roboshop
 
 
 

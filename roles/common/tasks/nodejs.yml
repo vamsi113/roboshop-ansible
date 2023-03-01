@@ -19,6 +19,7 @@
 - name: Install packages based on package.json.
   npm:
     path: /home/roboshop/{{COMPONENT}}
+  become-user: roboshop
 
 #
 #
