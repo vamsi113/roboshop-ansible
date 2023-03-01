@@ -17,21 +17,21 @@
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
+- name: starting MongoDB Repo
+  ansible.builtin.systemd:
+    name: mongod
+    state: restarted
+    enabled: yes
 
-#echo "updating listener config"
-#sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
-#StatusCheck $?
-#
-#echo "starting mongodb service"
-#systemctl enable mongod &>>$LOG_FILE
-#systemctl restart mongod &>>$LOG_FILE
-#StatusCheck $?
-#
-#echo "downloading Mongodb schema"
-#curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG_FILE
-#
-#
-#cd /tmp
+- name: downloading Mongodb schema and Extract it
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+
+## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
+
 #echo "extracting schema files"
 #unzip -o mongodb.zip &>>$LOG_FILE
 #StatusCheck $?
