@@ -32,13 +32,13 @@
 
 - name: load Catalogue Service Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb/catalogue.js"
+    file: "/tmp/mongodb-main/catalogue.js"
     idempotent: yes
     ## idempotent it wont recreate the schema if yes
 
 - name: load User Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb/users.js"
+    file: "/tmp/mongodb-main/users.js"
     idempotent: yes
     ## if idempotent yes, it wont recreate the schema if it exists
 
