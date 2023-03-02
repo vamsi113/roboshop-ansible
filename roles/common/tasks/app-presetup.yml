@@ -41,7 +41,7 @@
 
 - name: Copy Extracted Content
   ansible.builtin.copy:
-    src: /tmp/catalogue-main/
+    src: /tmp/{{COMPONENT}}-main/
     dest: /home/roboshop/{{COMPONENT}}
     remote_src: yes
     ## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
