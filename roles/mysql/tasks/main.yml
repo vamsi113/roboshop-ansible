@@ -59,7 +59,7 @@
   register: out
 - name: Print out
   debug:
-    msg: "{{out}}"
+    msg: "{{out['content'] | b64decode | }}"
 
 
 
