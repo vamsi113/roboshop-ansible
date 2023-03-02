@@ -23,7 +23,7 @@
 #StatusCheck $?
 - name: install redis
   ansible.builtin.dnf:
-    name: 6.2.11-1.el8.remi
+    name: redis
     state: installed
     disable_gpg_check: yes
 
