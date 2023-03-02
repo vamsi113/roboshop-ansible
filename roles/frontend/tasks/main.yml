@@ -21,7 +21,7 @@
     remote_src: yes
     ## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
 
-##here in shell scripting, config file will be moved same as zip file. but, in ansible as a CMT can help to use in ansible playbook.
+##here in shell scripting, config file will be moved same as zip file. but, in ansible as a CMT can help to use in ansible playbook as roboshop.conf.
 - name: Copy Roboshop Nginx Config File
   ansible.builtin.copy:
     src: roboshop.conf

@@ -29,6 +29,14 @@
     dest: /tmp
     remote_src: yes
 ## remote_src:Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
+### Load schema can be done using loops also
+- name: load Schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/{{item}}.js"
+    idempotent: yes
+  loop:
+    - catalogue
+    - users
 
 #- name: load Catalogue Service Schema
 #  community.mongodb.mongodb_shell:
@@ -43,13 +51,3 @@
 #    ## if idempotent yes, it wont recreate the schema if it exists
 
 
-### Load schema can be done using loops also
-- name: load Schema
-  community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/{{item}}.js"
-    idempotent: yes
-  loop:
-      - catalogue
-      - users
-
-- name:
