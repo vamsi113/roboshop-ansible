@@ -56,7 +56,7 @@
 - name: Extract Password from a File
   ansible.builtin.slurp:
     src: /var/log/mysqld.log
-    register: out
+  register: out
 - name: Print out
   debug:
     msg: "{{out}}"
