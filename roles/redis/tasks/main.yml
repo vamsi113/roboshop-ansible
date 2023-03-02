@@ -11,7 +11,7 @@
     name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     state: installed
     disable_gpg_check: yes
-    enable: remi-6.2
+    
 
 - name: install redis 6.2
   ansible.builtin.dnf:
