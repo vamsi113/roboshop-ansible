@@ -11,13 +11,11 @@
     name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     state: installed
     disable_gpg_check: yes
-    
+
 
 - name: install redis 6.2
-  ansible.builtin.dnf:
-    name: redis
-    enablerepo: remi-6.2
-    state: installed
+  ansible.builtin.shell: dnf module enable redis:remi-6.2 -y
+  
 
 #echo "enabling redis yum modules"
 #dnf module enable redis:remi-6.2 -y &>>${LOG_FILE}
