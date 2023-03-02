@@ -34,7 +34,17 @@
 #  #Update listen address from 127.0.0.1 to 0.0.0.0 in /etc/redis.conf & /etc/redis/redis.conf
 #sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf
 #StatusCheck $?
-#
+
+- name: updating redis listener config
+  ansible.builtin.replace:
+    path: "{{item}}"
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+  loop:
+    - /etc/redis.conf
+    - /etc/redis/redis.conf
+
+
 #echo "enable redis"
 #systemctl enable redis &>>${LOG_FILE}
 #StatusCheck $?
@@ -42,3 +52,9 @@
 #echo "starting redis"
 #systemctl restart redis &>>${LOG_FILE}
 #StatusCheck $?
+
+- name: Start Redis Service
+  ansible.builtin.systemd:
+    name: redis
+    state: restarted
+    enabled: yes
