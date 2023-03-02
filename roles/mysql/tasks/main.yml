@@ -39,20 +39,30 @@
 #echo "Enabling MYSQL Service"
 #systemctl enable mysqld &>>${LOG_FILE}
 #StatusCheck $?
+#echo "Satarting MYSQL Service"
+#systemctl restart mysqld &>>${LOG_FILE}
+#StatusCheck $?
+
 - name: Enabling and Starting MYSQL Service
   ansible.builtin.systemd:
     name: mysqld
     state: started
     enabled: yes
 
-#echo "Satarting MYSQL Service"
-#systemctl restart mysqld &>>${LOG_FILE}
-#StatusCheck $?
-#
+
 #echo "Storing Default password"
 #DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}') &>>${LOG_FILE}
 #StatusCheck $?
-#
+- name: Extract Password from a File
+  ansible.builtin.slurp:
+    src: /var/log/mysqld.log
+    register: out
+- name: Print out
+  debug:
+    msg: "{{out}}"
+
+
+
 #  ### storing changed password
 #echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}'); FLUSH PRIVILEGES;" > /tmp/root-pass.sql
 #
