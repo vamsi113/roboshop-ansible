@@ -34,7 +34,7 @@
   ansible.builtin.yum:
     name: "{{item}}"
     state: installed
-  item:
+  loop:
     - mysql-community-devel
     - mysql-community-server
     - gcc
