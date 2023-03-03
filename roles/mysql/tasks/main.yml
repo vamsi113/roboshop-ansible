@@ -32,7 +32,7 @@
 
 - name: Install MYSQL server and python dependancies
   ansible.builtin.dnf:
-    name:
+    name: "{{item}}"
     state: installed
   item:
     - mysql-community-devel
