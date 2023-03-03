@@ -103,6 +103,9 @@
 #mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} < /tmp/root-pass.sql &>>${LOG_FILE}
 #StatusCheck $?
 #fi
+- name: change the root password
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{ out['content'] | b64decode | regex_findall('temporary password .*') | join(' ') | split(' ') | last }}" < /tmp/root-pass.sql
+  when: mysql_conn_status is failed
 
 #  # uninstall plugin validate_password;
 #echo "show plugins" | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD} 2>>${LOG_FILE} | grep validate_password &>>${LOG_FILE}
