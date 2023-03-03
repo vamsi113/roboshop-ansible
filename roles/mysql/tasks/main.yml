@@ -95,7 +95,7 @@
 #echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}'); FLUSH PRIVILEGES;" > /tmp/root-pass.sql
 
 - name: copy mysql password reset file to reset
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: reset-root-pass.sql
     dest: /tmp/root-pass.sql
   when: mysql_conn_status is failed
