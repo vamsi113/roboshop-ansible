@@ -88,6 +88,10 @@
   ignore_errors: yes
   register: mysql_conn_status # to check whether connection is failed, passed. if fail need to change password.
 
+- name: print out status
+  debug:
+    msg: "{{mysql_conn_status}}"
+    
 #mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} < /tmp/root-pass.sql &>>${LOG_FILE}
 #StatusCheck $?
 #fi
