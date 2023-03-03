@@ -30,10 +30,15 @@
 #yum install mysql-community-server -y &>>${LOG_FILE}
 #StatusCheck $?
 
-- name: Install MYSQL
+- name: Install MYSQL server and python dependancies
   ansible.builtin.dnf:
-    name: mysql-community-server
+    name:
     state: installed
+  item:
+    - mysql-community-devel
+    - mysql-community-server
+    - gcc
+    - python36-devel
 
 
 #echo "Enabling MYSQL Service"
@@ -72,7 +77,7 @@
 - name: Check MYSQL new credentials are working
   community.mysql.mysql_info:
     login_user: root
-    login_password: "{ { ROBOSHOP_MYSQL_PASSWORD } }"
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
 
 
