@@ -53,6 +53,9 @@
 #echo "Storing Default password"
 #DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}') &>>${LOG_FILE}
 #StatusCheck $?
+#  ### storing changed password
+#echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}'); FLUSH PRIVILEGES;" > /tmp/root-pass.sql
+#
 - name: Extract Password from a File
   ansible.builtin.slurp:
     src: /var/log/mysqld.log
@@ -62,14 +65,18 @@
     msg: "{{ out['content'] | b64decode | regex_findall('temporary password .*') | join(' ') | split(' ') | last }}"
 
 
-
-#  ### storing changed password
-#echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}'); FLUSH PRIVILEGES;" > /tmp/root-pass.sql
-#
 #echo "show databases;" | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD} &>>${LOG_FILE}
 #if [ $? -ne 0 ]; then
 #echo "Changing mysql default  Root Password"
 #
+- name: Check MYSQL new credentials are working
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: "{ { ROBOSHOP_MYSQL_PASSWORD } }"
+    filter: version
+
+
+
 #mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} < /tmp/root-pass.sql &>>${LOG_FILE}
 #StatusCheck $?
 #fi
