@@ -114,6 +114,18 @@
 #echo "uninstall plugin validate_password;" | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD} &>>${LOG_FILE}
 #StatusCheck $?
 #fi
+- name: Check MYSQL Password validate
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+    filter: 'show plugins'
+  ignore_errors: yes
+  register: plugins_status
+  # to check whether connection is failed, passed. if fail need to change password.
+
+- name: print
+  debug:
+    msg: "{{plugins_status}}"
 #
 #echo "Download Schema"
 #curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>${LOG_FILE}
