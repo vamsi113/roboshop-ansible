@@ -85,8 +85,7 @@
     login_user: root
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
-
-
+  ignore_errors: yes
 
 #mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} < /tmp/root-pass.sql &>>${LOG_FILE}
 #StatusCheck $?
