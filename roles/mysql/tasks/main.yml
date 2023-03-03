@@ -40,6 +40,10 @@
     - gcc
     - python36-devel
 
+- name: install Mysqlclient pip3 module
+  ansible.builtin.pip:
+    name: mysqlclient
+    executable: pip3
 
 #echo "Enabling MYSQL Service"
 #systemctl enable mysqld &>>${LOG_FILE}
@@ -58,9 +62,7 @@
 #echo "Storing Default password"
 #DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}') &>>${LOG_FILE}
 #StatusCheck $?
-#  ### storing changed password
-#echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}'); FLUSH PRIVILEGES;" > /tmp/root-pass.sql
-#
+
 - name: Extract Password from a File
   ansible.builtin.slurp:
     src: /var/log/mysqld.log
@@ -71,10 +73,6 @@
     msg: "{{ out['content'] | b64decode | regex_findall('temporary password .*') | join(' ') | split(' ') | last }}"
 
 
-- name: install Mysqlclient pip3 module
-  ansible.builtin.pip:
-    name: mysqlclient
-    executable: pip3
 
 #echo "show databases;" | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD} &>>${LOG_FILE}
 #if [ $? -ne 0 ]; then
@@ -88,13 +86,24 @@
   ignore_errors: yes
   register: mysql_conn_status # to check whether connection is failed, passed. if fail need to change password.
 
-- name: print out status
-  debug:
-    msg: "{{mysql_conn_status}}"
-    
+#- name: print out status
+#  debug:
+#    msg: "{{mysql_conn_status}}"
+
+
+#  ### storing changed password
+#echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}'); FLUSH PRIVILEGES;" > /tmp/root-pass.sql
+
+- name: copy mysql password reset file to reset
+  ansible.builtin.copy:
+    src: reset-root-pass.sql
+    dest: /tmp/root-pass.sql
+  when: mysql_conn_status is failed
+
 #mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} < /tmp/root-pass.sql &>>${LOG_FILE}
 #StatusCheck $?
 #fi
+
 #  # uninstall plugin validate_password;
 #echo "show plugins" | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD} 2>>${LOG_FILE} | grep validate_password &>>${LOG_FILE}
 #if [ $? -eq 0 ]; then
