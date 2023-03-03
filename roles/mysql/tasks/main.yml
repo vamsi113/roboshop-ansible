@@ -86,6 +86,7 @@
     login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
   ignore_errors: yes
+  register: mysql_conn_status # to check whether connection is failed, passed. if fail need to change password.
 
 #mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} < /tmp/root-pass.sql &>>${LOG_FILE}
 #StatusCheck $?
