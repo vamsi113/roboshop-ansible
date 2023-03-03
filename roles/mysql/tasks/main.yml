@@ -59,7 +59,7 @@
   register: out
 - name: Print out
   debug:
-    msg: "{{out['content'] | b64decode | regex_findall('temporary password*')}}"
+    msg: "{{ out['content'] | b64decode | regex_findall('temporary password*') | join(' ') | split(' ') | last }}"
 
 
 
