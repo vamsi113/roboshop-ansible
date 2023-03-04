@@ -1,0 +1,48 @@
+
+
+
+#echo "Setup RabbitMQ Repo"
+#curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>${LOG_FILE}
+#StatusCheck $?
+
+- name: SetUp RabbitMQ repos
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+
+
+#echo "Setup Erlang Repos for RabbitMQ"
+##curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash &>>${LOG_FILE}
+##StatusCheck $?
+#echo "Installing Erlang"
+#  # yum install erlang -y &>>${LOG_FILE}
+#StatusCheck $?
+#
+#echo "Installing RabbitMQ Server"
+#yum install rabbitmq-server -y &>>${LOG_FILE}
+#StatusCheck $?
+- name: Install Erlang & RabbitMQ
+  ansible.builtin.yum:
+    name: "{{item}}"
+    state: installed
+  loop:
+    - https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
+    - rabbitmq-server
+
+
+#echo "Enabling and starting RabbitMQ Server"
+#systemctl enable rabbitmq-server &>>${LOG_FILE}
+#systemctl start rabbitmq-server &>>${LOG_FILE}
+#StatusCheck $?
+- name: Start RabbitMQ Server
+  ansible.builtin.systemd:
+    name: rabbitmq-server
+    state: installed
+    enabled: yes
+
+
+#
+#rabbitmqctl list_users | grep roboshop &>>${LOG_FILE}
+#if [ $? -ne 0 ]; then
+#echo "Add Application User in RabbitMQ"
+#rabbitmqctl add_user roboshop roboshop123 &>>${LOG_FILE}
+#StatusCheck $?
+#fi
