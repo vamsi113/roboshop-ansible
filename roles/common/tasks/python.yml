@@ -37,8 +37,8 @@
     regexp: '^{{item.name}}'
     line: uid = {{item.id}}
   loop:
-    - { name: "uid", id: "{{appuser.uid}}" }
-    - { name: "uid" id: "{{appuser.uid}}" }
+    - { name: "uid" , id: "{{appuser.uid}}" }
+    - { name: "uid" , id: "{{appuser.group}}" }
 #  echo "Update Payment Configuration File"
 #  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
 #  StatusCheck $?
