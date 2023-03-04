@@ -22,7 +22,9 @@
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
 
-
+- name: print
+  debug:
+    msg: User ID = "{{appuser.uid}}" , group id = "{{appuser.group}}"
 #  APP_UID=$(id -u roboshop)
 #  APP_GID=$(id -g roboshop)
 #  echo "Update Payment Configuration File"
@@ -30,3 +32,6 @@
 #  StatusCheck $?
 #
 #  SYSTEMD_SETUP
+#  SYSTEMD_SETUP
+- name: Import SystemD task file
+  ansible.builtin.import_tasks: systemd.yml

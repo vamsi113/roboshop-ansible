@@ -26,6 +26,7 @@
 - name: adding Roboshop application User
   ansible.builtin.user:
     name: roboshop
+  register: appuser
 
 - name: removing old content
   ansible.builtin.file:
