@@ -23,6 +23,7 @@
   ansible.builtin.yum:
     name: "{{item}}"
     state: installed
+    gpg_ckeck: true
   loop:
     - https://github.com/rabbitmq/erlang-rpm/releases/download/v25.2.3/erlang-25.2.3-1.el8.x86_64.rpm
     - rabbitmq-server
