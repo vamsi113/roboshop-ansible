@@ -46,3 +46,13 @@
 #rabbitmqctl add_user roboshop roboshop123 &>>${LOG_FILE}
 #StatusCheck $?
 #fi
+- name: add application user
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: "{{ROBOSHOP_RABBITMQ_PASSWORD}}"
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+    
