@@ -1,0 +1,31 @@
+
+# echo "Install Maven"
+#   yum install maven -y &>>${LOG_FILE}
+#   StatusCheck $?
+#
+- name: installing maven
+  ansible.builtin.yum:
+    name: maven
+    state: installed
+
+#  APP_PRESETUP
+## imporrting role task of one file(roles/common/task/app-presetytup.yaml) to same role task of another file(roles/common/task/nodejs.yml)
+- name: Import App Pre-setup task file
+  ansible.builtin.import_tasks: app-presetup.yml
+
+#   echo "Download Dependancies and Make Packages"
+#   mvn clean package &>>${LOG_FILE}
+#   mv target/shipping-1.0.jar shipping.jar &>>${LOG_FILE}
+#   StatusCheck $?
+
+
+## in ansible we dont have ansible module to download dependacies package and so we are using shell commands.
+- name: Downloading Maven dependancies and packages
+  ansible.builtin.shell: mvn clean package &&  mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+  become_user: roboshop
+  
+#  SYSTEMD_SETUP
+- name: Import SystemD task file
+  ansible.builtin.import_tasks: systemd.yml
+
+#   SYSTEMD_SETUP
