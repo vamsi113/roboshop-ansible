@@ -123,9 +123,9 @@
   register: plugins_status
   # to check whether connection is failed, passed. if fail need to change password.
 
-- name: print
-  debug:
-    msg: "{{plugins_status | regex_findall('validate_password') | length}}"
+#- name: print
+#  debug:
+#    msg: "{{plugins_status | regex_findall('validate_password') | length}}"
 
 - name: Check MYSQL Password validate plugin
   community.mysql.mysql_query:
@@ -143,9 +143,22 @@
 #echo "Extract Schema"
 #unzip -o mysql.zip &>>${LOG_FILE}
 #StatusCheck $?
-#
+
+- name: downloading mysql schema and Extract it
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mysql/archive/main.zip
+    dest: /tmp
+    remote_src: yes
 #echo "Load Schema"
 #cd mysql-main
 #mysql -u root -p${ROBOSHOP_MYSQL_PASSWORD} <shipping.sql &>>${LOG_FILE}
 #StatusCheck $?
-#
+
+# Import of sql script with encoding option
+- name: Load Schema
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /tmp/mysql-main/shipping.sql
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
