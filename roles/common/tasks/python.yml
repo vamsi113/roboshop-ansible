@@ -23,13 +23,15 @@
     executable: pip3
 
 ## here appuser(contains output )is the variable registered at app-presetup
-- name: print
-  debug:
-    msg: User ID = "{{appuser.uid}}" , group id = "{{appuser.group}}"
+#- name: print
+#  debug:
+#    msg: User ID = "{{appuser.uid}}" , group id = "{{appuser.group}}"
+
+
 #  APP_UID=$(id -u roboshop)
 #  APP_GID=$(id -g roboshop)
 ### here lineinfile ansible module is used to update payment ini file
-- name: Change UID
+- name: Change UID and gid in app configuration 
   ansible.builtin.lineinfile:
     path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
     regexp: '^{{item.name}}'
