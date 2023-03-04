@@ -31,7 +31,7 @@
 #  APP_UID=$(id -u roboshop)
 #  APP_GID=$(id -g roboshop)
 ### here lineinfile ansible module is used to update payment ini file
-- name: Change UID and gid in app configuration 
+- name: Change UID and gid in app configuration
   ansible.builtin.lineinfile:
     path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
     regexp: '^{{item.name}}'

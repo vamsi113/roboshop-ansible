@@ -6,7 +6,7 @@
 #
 
 ## importing role task(role/common/task/nodejs.yml) to another role task(role/catalogue/task/main.yml)
-- name: Run NodeJS
+- name: Run Python app
   ansible.builtin.import_role:
       name: common
       tasks_from: python
