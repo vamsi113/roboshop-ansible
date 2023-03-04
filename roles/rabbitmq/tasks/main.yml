@@ -24,7 +24,7 @@
     name: "{{item}}"
     state: installed
   loop:
-    - https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
+    - https://github.com/rabbitmq/erlang-rpm/releases/download/v25.2.3/erlang-25.2.3-1.el8.x86_64.rpm
     - rabbitmq-server
 
 
@@ -39,7 +39,6 @@
     enabled: yes
 
 
-#
 #rabbitmqctl list_users | grep roboshop &>>${LOG_FILE}
 #if [ $? -ne 0 ]; then
 #echo "Add Application User in RabbitMQ"
