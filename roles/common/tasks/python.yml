@@ -22,11 +22,21 @@
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
 
+## here appuser(contains output )is the variable registered at app-presetup
 - name: print
   debug:
     msg: User ID = "{{appuser.uid}}" , group id = "{{appuser.group}}"
 #  APP_UID=$(id -u roboshop)
 #  APP_GID=$(id -g roboshop)
+### here lineinfile ansible module is used to update payment ini file
+- name: Change UID
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: '^{{item.name}}'
+    line: uid = {{item.id}}
+  loop:
+    - { name: "uid", id: "{{appuser.uid}}" }
+    - { name: "uid" id: "{{appuser.uid}}" }
 #  echo "Update Payment Configuration File"
 #  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
 #  StatusCheck $?
