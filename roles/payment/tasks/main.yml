@@ -1,0 +1,12 @@
+#COMPONENT=catalogue
+#LOG_FILE=/tmp/{COMPONENT}
+#
+#source common.sh
+#NODEJS
+#
+
+## importing role task(role/common/task/nodejs.yml) to another role task(role/catalogue/task/main.yml)
+- name: Run NodeJS
+  ansible.builtin.import_role:
+      name: common
+      tasks_from: python

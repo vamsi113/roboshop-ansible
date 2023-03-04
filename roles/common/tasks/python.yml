@@ -1,0 +1,32 @@
+#echo "Installing Python 3 "
+#  yum install python36 gcc python3-devel -y &>>${LOG_FILE}
+#  StatusCheck $?
+- name: Installing Python
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
+
+#  APP_PRESETUP
+- name: Import App Pre-setup task file
+  ansible.builtin.import_tasks: app-presetup.yml
+#
+#  echo "Installing Pip Requirements "
+#  pip3 install -r requirements.txt &>>${LOG_FILE}
+#  StatusCheck $?
+
+- name: install pip requirements
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+    executable: pip3
+
+
+#  APP_UID=$(id -u roboshop)
+#  APP_GID=$(id -g roboshop)
+#  echo "Update Payment Configuration File"
+#  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
+#  StatusCheck $?
+#
+#  SYSTEMD_SETUP
