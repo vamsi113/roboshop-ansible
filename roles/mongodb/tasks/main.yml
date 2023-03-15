@@ -40,7 +40,7 @@
 
 - name: load Catalogue Service Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/catalogue.js"
+    file: /tmp/mongodb-main/catalogue.js
     idempotent: yes
     ## idempotent it wont recreate the schema if yes
 
