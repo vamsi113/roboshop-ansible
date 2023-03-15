@@ -23,7 +23,7 @@
 
 ##here in shell scripting, config file will be moved same as zip file. but, in ansible as a CMT can help to use in ansible playbook as roboshop.conf.
 - name: Copy Roboshop Nginx Config File
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
   notify: Restart Nginx Service
