@@ -28,5 +28,3 @@ rabbitmq-dev.roboshop.internal
 [PAYMENT]
 payment-dev.roboshop.internal
 
-[DISPATCH]
-dispatch-dev.roboshop.internal

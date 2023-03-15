@@ -52,10 +52,6 @@
   roles:
     - payment
 
-- name: Dispatch Setup
-  hosts: DISPATCH
-  become: true
-  roles:
-    - dispatch
+
 
 
