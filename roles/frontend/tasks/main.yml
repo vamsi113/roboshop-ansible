@@ -28,7 +28,14 @@
     dest: /etc/nginx/default.d/roboshop.conf
   notify: restart nginx Service
 
-  ### notify comes here as handler references
+## here we are doing monitoring to find latency
+- name: Copy Nginx Service Config File
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+  notify: restart nginx Service
+
+### notify comes here as handler references
 
 ## here we created handlers role to restart.
 - name: start Nginx Service
