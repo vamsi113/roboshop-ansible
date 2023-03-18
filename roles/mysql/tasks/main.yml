@@ -130,7 +130,7 @@
 - name: Check MYSQL Password validate plugin
   community.mysql.mysql_query:
     login_user: root
-    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+    login_password: "{{SECRETS.ROBOSHOP_MYSQL_PASSWORD}}"
     query: 'uninstall plugin validate_password'
   when: plugins_status | regex_findall('validate_password') | length > 0
 
@@ -161,4 +161,4 @@
     name: all
     target: /tmp/mysql-main/shipping.sql
     login_user: root
-    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+    login_password: "{{SECRETS.ROBOSHOP_MYSQL_PASSWORD}}"
