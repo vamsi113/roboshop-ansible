@@ -17,13 +17,13 @@
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
-- name: starting MongoDB Repo
+- name: Starting MongoDB Repo
   ansible.builtin.systemd:
     name: mongod
     state: restarted
     enabled: yes
 
-- name: downloading Mongodb schema and Extract it
+- name: Downloading Mongodb Schema and Extract it
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
     dest: /tmp
