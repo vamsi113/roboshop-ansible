@@ -43,7 +43,7 @@
 #    file: "/tmp/mongodb-main/users.js"
 #    idempotent: yes
 
-- name: load Schema
+- name: Load Schema
   community.mongodb.mongodb_shell:
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
