@@ -43,8 +43,15 @@
 #    file: "/tmp/mongodb-main/users.js"
 #    idempotent: yes
 
-#- name : Creating Symbolic Link
-#  community.builtin.shell: ln -s /usr/bin/mongo /usr/bin/mongosh
+########## Create symbolic link
+- name: Create symbolic link
+  file:
+    src: "/usr/bin/mongo"
+    dest: "/usr/bin/mongosh"
+    state: link
+  when:
+    - ansible_host in groups['ihm']
+
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
