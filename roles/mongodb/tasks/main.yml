@@ -49,8 +49,6 @@
     src: "/usr/bin/mongo"
     dest: "/usr/bin/mongosh"
     state: link
-#  when:
-#    - ansible_host in groups['ihm']
 
 
 - name: Load Schema
