@@ -43,8 +43,8 @@
 #    file: "/tmp/mongodb-main/users.js"
 #    idempotent: yes
 
-- name : Creating Symbolic Link
-  community.builtin.shell: ln -s /usr/bin/mongo /usr/bin/mongosh
+#- name : Creating Symbolic Link
+#  community.builtin.shell: ln -s /usr/bin/mongo /usr/bin/mongosh
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
