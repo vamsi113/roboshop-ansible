@@ -3,11 +3,11 @@
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
 
-#- name: Restart Prometheus
-#  ansible.builtin.systemd:
-#    name: prometheus
-#    state: restarted
-#
+- name: Restart Prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
+
 #- name: Wait for Prometheus to Start
 #  ansible.builtin.wait_for:
 #    host: 0.0.0.0
