@@ -30,7 +30,7 @@ scrape_configs:
         port: 9100
         filters:
           - name: "monitor"
-            values: yes
+            values: ["yes"]
     relabel_configs:   # Only monitor instances with a Name starting with "SD Demo"
       - source_labels: [__meta_ec2_tag_Name]
         target_label: Name
