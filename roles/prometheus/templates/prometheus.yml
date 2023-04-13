@@ -13,7 +13,7 @@ alerting:
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-  # - "first_rules.yml"
+  - "record_rules.yml"
   # - "second_rules.yml"
 
 # A scrape configuration containing exactly one endpoint to scrape:
@@ -38,5 +38,3 @@ scrape_configs:
         target_label: ENV
       - source_labels: [__meta_ec2_tag_COMPONENT]
         target_label: COMPONENT
-
-
