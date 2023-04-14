@@ -9,3 +9,11 @@ groups:
         annotations:
           summary: "Instance Down - [{{ $labels.instance}}]"
           description: "Instance Down - [{{ $labels.instance}}]"
+      - alert: NodeMemoryHighUsage
+        expr: node_memory_used_percent > 80
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "high Memory Usage - [{{ $labels.Name}}]"
+          description: "high Memory Usage - [{{ $labels.Name}}]\n Private IP Address = [{{$labels.Instance}}]"

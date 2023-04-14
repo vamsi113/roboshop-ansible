@@ -3,3 +3,4 @@ groups:
     rules:
       - record: node_memory_used_percent
         expr: ceil(100-((node_memory_MemFree_bytes + node_memory_Cached_bytes)/node_memory_MemTotal_bytes * 100))
+
