@@ -10,6 +10,7 @@ groups:
           {% raw %}summary: "Instance Down - [{{ $labels.instance}}]"{% endraw %}
 
           {% raw %}description: "Instance Down - [{{ $labels.instance}}]"{% endraw %}
+          
       - alert: NodeMemoryHighUsage
         expr: node_memory_used_percent > 80
         for: 1m
@@ -17,5 +18,5 @@ groups:
           severity: critical
         annotations:
           {% raw %}summary: "high Memory Usage - [{{ $labels.Name}}]"{% endraw %}
-          
+
           {% raw %}description: "high Memory Usage - [{{ $labels.Name}}]\n Private IP Address = [{{$labels.Name}}]"{% endraw %}
