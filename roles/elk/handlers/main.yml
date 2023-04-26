@@ -1,0 +1,5 @@
+- name: restart rsyslog
+  ansible.builtin.systemd:
+    state: restarted
+    name: rsyslog
+    enabled: yes
