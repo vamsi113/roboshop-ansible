@@ -32,7 +32,7 @@ groups:
           {% raw %}description: "high CPU Usage - [{{ $labels.Name}}]\n Private IP Address = [{{$labels.Name}}]"{% endraw %}
 
 {% for component in components %}
-      - alert: CartServiceDown
+      - alert: CartServiceDown`
         expr: node_systemd_unit_state{name="{{component}}.service",state="active"} < 1
         for: 1m
         labels:
@@ -40,6 +40,6 @@ groups:
         annotations:
           summary: "{{component}} ServiceDown - {% raw %}[{{ $labels.Name}}]"{% endraw %}
 
-         description: "{{component}} ServiceDown -  {% raw %}[{{ $labels.Name}}]\n Private IP Address = [{{$labels.Name}}]"{% endraw %}
+          description: "{{component}} ServiceDown -  {% raw %}[{{ $labels.Name}}]\n Private IP Address = [{{$labels.Name}}]"{% endraw %}
 
 {% endfor %}
