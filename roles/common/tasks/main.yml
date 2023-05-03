@@ -10,3 +10,10 @@
     name: elk
     tasks_from: rsyslog
   when: RSYSLOG_CONFIG | bool
+
+- name: Install Botocore3 and boto3
+  ansible.builtin.pip:
+    name:
+      - botocore
+      - boto3
+    executable: pip3.9
