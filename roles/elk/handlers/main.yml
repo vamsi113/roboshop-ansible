@@ -2,3 +2,8 @@
   ansible.builtin.systemd:
     name: rsyslog
     state: restarted
+
+- name: Start Logstash Service
+  ansible.builtin.systemd:
+    name: logstash
+    state: restarted
