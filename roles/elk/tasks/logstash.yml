@@ -2,7 +2,11 @@
   ansible.builtin.template:
     src: logstash.conf
     dest: /etc/logstash/conf.d/logstash.conf
-  notify: Start Logstash Service
+
+- name: Start Logstash Service
+  ansible.builtin.systemd:
+    name: logstash
+    state: restarted
 
 - name: Wait for Logstash Service to Start
   ansible.builtin.wait_for:
