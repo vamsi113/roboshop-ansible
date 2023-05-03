@@ -8,9 +8,13 @@
     name: logstash
     state: restarted
 
+#- name: Wait for Logstash Service to Start
+#  ansible.builtin.wait_for:
+#    host: 0.0.0.0
+#    port: 5044
+#    delay: 60
+#    timeout: 10
+#here the above ansible wait for  is not working in centos 8. so we can use shell module
+
 - name: Wait for Logstash Service to Start
-  ansible.builtin.wait_for:
-    host: 0.0.0.0
-    port: 5044
-    delay: 60
-    timeout: 10
+  ansible.builtin.shell: sleep 60 &&  netstat -lntp | grep 5044
