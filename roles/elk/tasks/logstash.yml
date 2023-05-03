@@ -3,3 +3,10 @@
     src: logstash.conf
     dest: /etc/logstash/conf.d/logstash.conf
   notify: Start Logstash Service
+
+- name: Wait for Prometheus Service to Start
+  ansible.builtin.wait_for:
+    host: 0.0.0.0
+    port: 5044
+    delay: 30
+    timeout: 10
