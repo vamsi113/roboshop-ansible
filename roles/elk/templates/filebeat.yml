@@ -4,6 +4,8 @@ filebeat.inputs:
   enabled: true
   paths:
     - {{FILEBEAT_INPUT_LOG_FILE}}
+  fields:
+    COMPONENT: {{COMPONENT}}
 
 output.logstash:
   hosts: ["logstash.roboshop.internal:5044"]
