@@ -1,3 +1,6 @@
 COMPONENT: catalogue
 PROMETHEUS_MONITOR: yes
 RSYSLOG_CONFIG: yes
+SECRETS: "{{lookup('amazon.aws.aws_secret', 'roboshop.secrets', region='us-east-1')}}"
+NEXUS_USER: "{{SECRETS.NEXUS_USER}}"
+NEXUS_PASS: "{{SECRETS.NEXUS_PASS}}"

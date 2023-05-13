@@ -3,10 +3,16 @@
 #   yum install maven -y &>>${LOG_FILE}
 #   StatusCheck $?
 #
-- name: installing maven
+#- name: installing maven
+#  ansible.builtin.yum:
+#    name: maven
+#    state: installed
+
+- name: installing java
   ansible.builtin.yum:
-    name: maven
+    name: java
     state: installed
+
 
 #  APP_PRESETUP
 ## imporrting role task of one file(roles/common/task/app-presetytup.yaml) to same role task of another file(roles/common/task/nodejs.yml)
@@ -20,11 +26,11 @@
 
 
 ## in ansible we dont have ansible module to download dependacies package and so we are using shell commands.
-- name: Downloading Maven dependancies and packages
-  ansible.builtin.shell: mvn clean package &&  mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
-  args:
-    chdir: /home/roboshop/{{COMPONENT}}
-  become_user: roboshop
+#- name: Downloading Maven dependancies and packages
+#  ansible.builtin.shell: mvn clean package &&  mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+#  args:
+#    chdir: /home/roboshop/{{COMPONENT}}
+#  become_user: roboshop
 
 #  SYSTEMD_SETUP
 - name: Import SystemD task file
