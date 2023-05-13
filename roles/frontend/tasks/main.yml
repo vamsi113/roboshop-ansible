@@ -8,17 +8,30 @@
     path: /usr/share/nginx/html
     state: absent
 
-- name: downloading Nginx web content and Extract it
+
+- name: Create Application Directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+- name: downloading application Content
   ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp
+    src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /home/roboshop/{{COMPONENT}}
     remote_src: yes
 
-- name: Copy Extracted Content
-  ansible.builtin.copy:
-    src: /tmp/frontend-main/static/
-    dest: /usr/share/nginx/html/
-    remote_src: yes
+#all commented ansible code is to follow standard process of downloading the content from artifact manager rather than git repo
+#- name: downloading Nginx web content and Extract it
+#  ansible.builtin.unarchive:
+#    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+#    dest: /tmp
+#    remote_src: yes
+#
+#- name: Copy Extracted Content
+#  ansible.builtin.copy:
+#    src: /tmp/frontend-main/static/
+#    dest: /usr/share/nginx/html/
+#    remote_src: yes
     ## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
 
 ##here in shell scripting, config file will be moved same as zip file. but, in ansible as a CMT can help to use in ansible playbook as roboshop.conf.

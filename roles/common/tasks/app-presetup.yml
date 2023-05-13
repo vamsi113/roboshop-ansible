@@ -42,7 +42,7 @@
 #    dest: /tmp
 #    remote_src: yes
 
-- name: Create Application Content
+- name: Create Application Directory
   ansible.builtin.file:
     path: /home/roboshop/{{COMPONENT}}
     state: directory
