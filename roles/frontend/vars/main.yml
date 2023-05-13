@@ -2,3 +2,7 @@ COMPONENT: frontend
 PROMETHEUS_MONITOR: yes
 RSYSLOG_CONFIG: false
 FILEBEAT_INPUT_LOG_FILE: /var/log/nginx/access.log
+
+SECRETS: "{{lookup('amazon.aws.aws_secret', 'roboshop.secrets', region='us-east-1')}}"
+NEXUS_USER: "{{SECRETS.NEXUS_USER}}"
+NEXUS_PASS: "{{SECRETS.NEXUS_PASS}}"
