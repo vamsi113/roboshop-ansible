@@ -8,6 +8,7 @@
     path: /usr/share/nginx/html
     state: absent
 
+
 ##tthe below code is commented because to follow the standard process of downloading the content from artifact manager rather than downloading git hub repo.
 
 #- name: downloading Nginx web content and Extract it
@@ -16,16 +17,25 @@
 #    dest: /tmp
 #    remote_src: yes
 
-- name: Creating Application Directory
+
+- name: Create Application Directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: directory
 
-- name: downloading Nginx
+- name: downloading application Content
   ansible.builtin.unarchive:
     src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: /usr/share/nginx/html
     remote_src: yes
+
+#all commented ansible code is to follow standard process of downloading the content from artifact manager rather than git repo
+#- name: downloading Nginx web content and Extract it
+#  ansible.builtin.unarchive:
+#    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+#    dest: /tmp
+#    remote_src: yes
+#
 
 #- name: Copy Extracted Content
 #  ansible.builtin.copy:

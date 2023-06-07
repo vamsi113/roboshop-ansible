@@ -41,7 +41,6 @@
 #    dest: /tmp
 #    remote_src: yes
 
-
 #- name: Copy Extracted Content
 #  ansible.builtin.copy:
 #    src: /tmp/{{COMPONENT}}-main/
@@ -49,6 +48,7 @@
 #    remote_src: yes
 #    ## Set to true to indicate the archived file is already on the remote system and not local to the Ansible controller.
 #  become_user: roboshop
+
 
 
 ## here we are downloading artifacts from nexus rather than downloading from git

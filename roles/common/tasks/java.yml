@@ -8,10 +8,11 @@
 #    name: maven
 #    state: installed
 
-- name: installing Java
+- name: installing java
   ansible.builtin.yum:
     name: java
     state: installed
+
 
 #  APP_PRESETUP
 ## imporrting role task of one file(roles/common/task/app-presetytup.yaml) to same role task of another file(roles/common/task/nodejs.yml)
