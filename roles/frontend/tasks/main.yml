@@ -9,6 +9,15 @@
     state: absent
 
 
+##tthe below code is commented because to follow the standard process of downloading the content from artifact manager rather than downloading git hub repo.
+
+#- name: downloading Nginx web content and Extract it
+#  ansible.builtin.unarchive:
+#    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+#    dest: /tmp
+#    remote_src: yes
+
+
 - name: Create Application Directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -27,6 +36,7 @@
 #    dest: /tmp
 #    remote_src: yes
 #
+
 #- name: Copy Extracted Content
 #  ansible.builtin.copy:
 #    src: /tmp/frontend-main/static/
