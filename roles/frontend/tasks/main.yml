@@ -63,7 +63,7 @@
 ## here we created handlers role to restart.
 - name: start Nginx Service
   ansible.builtin.systemd:
-    state: started
+    state: restarted
     name: nginx
     enabled: yes
 
