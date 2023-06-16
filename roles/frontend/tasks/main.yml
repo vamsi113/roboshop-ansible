@@ -27,7 +27,7 @@
   ansible.builtin.unarchive:
     src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: /usr/share/nginx/html
-    remote_src: yes
+  remote_src: yes
 
 #all commented ansible code is to follow standard process of downloading the content from artifact manager rather than git repo
 #- name: downloading Nginx web content and Extract it
