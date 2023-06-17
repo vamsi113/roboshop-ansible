@@ -21,8 +21,10 @@
     path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop
 
-#
-#
+- name: Download the DocumentDB Pem file
+  get_url:
+    url:
+    dest:
 #  SYSTEMD_SETUP
 - name: Import SystemD task file
   ansible.builtin.import_tasks: systemd.yml
