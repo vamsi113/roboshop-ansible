@@ -2,11 +2,13 @@
 Description = User Service
 [Service]
 User=roboshop
-Environment=MONGO=true
-Environment=REDIS_HOST="{{lookup('aws_ssm', 'roboshop.dev.user.REDIS_HOST', region='us-east-1')}}"
-Environment=MONGO_URL="{{lookup('aws_ssm', 'roboshop.dev.user.MONGO_URL', region='us-east-1')}}"
+Environment="{{lookup('aws_ssm', 'roboshop.dev.user.MONGO', region='us-east-1')}}"
+Environment=REDIS_HOST="{{SECRETS.ELASTICACHE_ENDPOINT}}"
+Environment=MONGO_URL="{{SECRETS.USER_MONGO_URL}}"
 ExecStart=/bin/node /home/roboshop/user/server.js
 SyslogIdentifier=user
 
 [Install]
 WantedBy=multi-user.target
+
+ELASTICACHE_ENDPOINT
