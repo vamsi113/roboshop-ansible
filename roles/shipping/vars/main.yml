@@ -1,3 +1,4 @@
 COMPONENT: shipping
 PROMETHEUS_MONITOR: yes
 RSYSLOG_CONFIG: yes
+SECRETS: "{{lookup('amazon.aws.aws_secret', 'roboshop.secrets', region='us-east-1')}}"
