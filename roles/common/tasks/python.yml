@@ -17,37 +17,37 @@
 #  pip3 install -r requirements.txt &>>${LOG_FILE}
 #  StatusCheck $?
 
-- name: install pip requirements
-  ansible.builtin.pip:
-    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
-    executable: pip3
-
-## here appuser(contains output )is the variable registered at app-presetup
-#- name: print
-#  debug:
-#    msg: User ID = "{{appuser.uid}}" , group id = "{{appuser.group}}"
-
-
-#  APP_UID=$(id -u roboshop)
-#  APP_GID=$(id -g roboshop)
-### here lineinfile ansible module is used to update payment ini file
-- name: Change UID and gid in app configuration
-  ansible.builtin.lineinfile:
-    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
-    regexp: '^{{item.name}}'
-    line: uid = {{item.id}}
-  loop:
-    - { name: "uid" , id: "{{appuser.uid}}" }
-    - { name: "uid" , id: "{{appuser.group}}" }
-#  echo "Update Payment Configuration File"
-#  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
-#  StatusCheck $?
+#- name: install pip requirements
+#  ansible.builtin.pip:
+#    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+#    executable: pip3
 #
-#  SYSTEMD_SETUP
-#  SYSTEMD_SETUP
-- name: Import SystemD task file
-  ansible.builtin.import_tasks: systemd.yml
-
-
-
-
+### here appuser(contains output )is the variable registered at app-presetup
+##- name: print
+##  debug:
+##    msg: User ID = "{{appuser.uid}}" , group id = "{{appuser.group}}"
+#
+#
+##  APP_UID=$(id -u roboshop)
+##  APP_GID=$(id -g roboshop)
+#### here lineinfile ansible module is used to update payment ini file
+#- name: Change UID and gid in app configuration
+#  ansible.builtin.lineinfile:
+#    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+#    regexp: '^{{item.name}}'
+#    line: uid = {{item.id}}
+#  loop:
+#    - { name: "uid" , id: "{{appuser.uid}}" }
+#    - { name: "uid" , id: "{{appuser.group}}" }
+##  echo "Update Payment Configuration File"
+##  sed -i -e "/uid/ c uid = ${APP_UID}" -e "/gid/ c gid = ${APP_GID}" /home/roboshop/${COMPONENT}/${COMPONENT}.ini &>>${LOG_FILE}
+##  StatusCheck $?
+##
+##  SYSTEMD_SETUP
+##  SYSTEMD_SETUP
+#- name: Import SystemD task file
+#  ansible.builtin.import_tasks: systemd.yml
+#
+#
+#
+#
