@@ -67,6 +67,7 @@
     remote_src: yes
   become_user: roboshop
 
+
 - name: Clean UP old App Content
   ansible.builtin.file:
     path: /home/roboshop/{{COMPONENT}}
