@@ -47,7 +47,4 @@
 #  SYSTEMD_SETUP
 - name: Import SystemD task file
   ansible.builtin.import_tasks: systemd.yml
-#
-#
-#
-#
+
