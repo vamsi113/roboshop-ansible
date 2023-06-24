@@ -20,4 +20,3 @@ SyslogIdentifier=payment
 
 [Install]
 WantedBy=multi-user.target
-SECRETS.ROBOSHOP_RABBITMQ_PASSWORD
