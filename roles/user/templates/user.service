@@ -2,7 +2,7 @@
 Description = User Service
 [Service]
 User=roboshop
-Environment="{{lookup('aws_ssm', 'roboshop.dev.user.MONGO', region='us-east-1')}}"
+Environment="{{lookup('aws_ssm', 'roboshop.{{ENV}}.user.MONGO', region='us-east-1')}}"
 Environment=REDIS_HOST="{{SECRETS.ELASTICACHE_ENDPOINT}}"
 Environment=MONGO_URL="{{SECRETS.USER_MONGO_URL}}"
 ExecStart=/bin/node /home/roboshop/user/server.js
