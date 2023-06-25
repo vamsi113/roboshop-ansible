@@ -41,3 +41,5 @@
         #- { name: "roboshop.prod.shipping.DB_HOST", value: "mysql-prod.roboshop.internal" } not using because of rds
         - { name: "roboshop.prod.user.REDIS_HOST", value: "redis-prod.roboshop.internal" }
         #- { name: "roboshop.prod.user.MONGO_URL", value: "mongodb://mongodb-prod.roboshop.internal:27017/users" }
+        - { name: "roboshop.prod.user.MONGO", value: "DOCUMENTDB=true" }
+        - { name: "roboshop.prod.catalogue.MONGO", value: "DOCUMENTDB=true" }
