@@ -11,11 +11,11 @@
         - { name: "roboshop.dev.catalogue.MONGO_URL", value: "mongodb://mongodb-dev.roboshop.internal:27017/catalogue" }
         - { name: "roboshop.dev.cart.REDIS_HOST", value: "redis-dev.roboshop.internal" }
         - { name: "roboshop.dev.cart.CATALOGUE_HOST", value: "catalogue-dev.roboshop.internal" }
-        - { name: "roboshop.dev.frontend.CATALOGUE_HOST", value: "http://catalogue-dev.roboshop.internal:8080/" }
-        - { name: "roboshop.dev.frontend.CART_HOST", value: "http://cart-dev.roboshop.internal:8080/" }
-        - { name: "roboshop.dev.frontend.USER_HOST", value: "http://user-dev.roboshop.internal:8080/" }
-        - { name: "roboshop.dev.frontend.SHIPPING_HOST", value: "http://shipping-dev.roboshop.internal:8080/" }
-        - { name: "roboshop.dev.frontend.PAYMENT_HOST", value: "http://payment-dev.roboshop.internal:8080/" }
+        - { name: "roboshop.dev.frontend.CATALOGUE_HOST", value: "http://catalogue-dev.roboshop.internal:80/" }
+        - { name: "roboshop.dev.frontend.CART_HOST", value: "http://cart-dev.roboshop.internal:80/" }
+        - { name: "roboshop.dev.frontend.USER_HOST", value: "http://user-dev.roboshop.internal:80/" }
+        - { name: "roboshop.dev.frontend.SHIPPING_HOST", value: "http://shipping-dev.roboshop.internal:80/" }
+        - { name: "roboshop.dev.frontend.PAYMENT_HOST", value: "http://payment-dev.roboshop.internal:80/" }
         - { name: "roboshop.dev.payment.CART_HOST", value: "cart-dev.roboshop.internal" }
         - { name: "roboshop.dev.payment.USER_HOST", value: "user-dev.roboshop.internal" }
         - { name: "roboshop.dev.payment.AMQP_HOST", value: "rabbitmq-dev.roboshop.internal" }
@@ -24,3 +24,20 @@
         - { name: "roboshop.dev.shipping.DB_HOST", value: "mysql-dev.roboshop.internal" }
         - { name: "roboshop.dev.user.REDIS_HOST", value: "redis-dev.roboshop.internal" }
         - { name: "roboshop.dev.user.MONGO_URL", value: "mongodb://mongodb-dev.roboshop.internal:27017/users" }
+
+        #- { name: "roboshop.prod.catalogue.MONGO_URL", value: "mongodb://mongodb-prod.roboshop.internal:27017/catalogue" } not using because of docdb
+        #- { name: "roboshop.prod.cart.REDIS_HOST", value: "redis-prod.roboshop.internal" } not using because of elasticache
+        - { name: "roboshop.prod.cart.CATALOGUE_HOST", value: "catalogue-prod.roboshop.internal" }
+        - { name: "roboshop.prod.frontend.CATALOGUE_HOST", value: "http://catalogue-prod.roboshop.internal:80/" }
+        - { name: "roboshop.prod.frontend.CART_HOST", value: "http://cart-prod.roboshop.internal:80/" }
+        - { name: "roboshop.prod.frontend.USER_HOST", value: "http://user-prod.roboshop.internal:80/" }
+        - { name: "roboshop.prod.frontend.SHIPPING_HOST", value: "http://shipping-prod.roboshop.internal:80/" }
+        - { name: "roboshop.prod.frontend.PAYMENT_HOST", value: "http://payment-prod.roboshop.internal:80/" }
+        - { name: "roboshop.prod.payment.CART_HOST", value: "cart-prod.roboshop.internal" }
+        - { name: "roboshop.prod.payment.USER_HOST", value: "user-prod.roboshop.internal" }
+        - { name: "roboshop.prod.payment.AMQP_HOST", value: "rabbitmq-prod.roboshop.internal" }
+        - { name: "roboshop.prod.payment.AMQP_HOST", value: "rabbitmq-prod.roboshop.internal" }
+        - { name: "roboshop.prod.shipping.CART_ENDPOINT", value: "cart-prod.roboshop.internal" }
+        #- { name: "roboshop.prod.shipping.DB_HOST", value: "mysql-prod.roboshop.internal" } not using because of rds
+        - { name: "roboshop.prod.user.REDIS_HOST", value: "redis-prod.roboshop.internal" }
+        #- { name: "roboshop.prod.user.MONGO_URL", value: "mongodb://mongodb-prod.roboshop.internal:27017/users" }
