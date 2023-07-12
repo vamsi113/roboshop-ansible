@@ -43,3 +43,9 @@
         - { name: "roboshop.prod.user.MONGO_URL", value: "mongodb://mongodb-prod.roboshop.internal:27017/users" }
         - { name: "roboshop.prod.user.MONGO", value: "DOCUMENTDB=true" }
         - { name: "roboshop.prod.catalogue.MONGO", value: "DOCUMENTDB=true" }
+        - { name: "roboshop.prod.cart.APP_VERSION", value: "f-1.0.1" }
+        - { name: "roboshop.prod.catalogue.APP_VERSION", value: "f-1.0.1" }
+        - { name: "roboshop.prod.user.APP_VERSION", value: "f-1.0.1" }
+        - { name: "roboshop.prod.payment.APP_VERSION", value: "f-1.0.1" }
+        - { name: "roboshop.prod.shipping.APP_VERSION", value: "f-1.0.1" }
+
