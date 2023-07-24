@@ -48,4 +48,9 @@
         - { name: "roboshop.prod.user.APP_VERSION", value: "f-1.0.2" }
         - { name: "roboshop.prod.payment.APP_VERSION", value: "f-1.0.2" }
         - { name: "roboshop.prod.shipping.APP_VERSION", value: "f-1.0.2" }
+        - { name: "roboshop.dev.cart.APP_VERSION", value: "f-1.0.2" }
+        - { name: "roboshop.dev.catalogue.APP_VERSION", value: "f-1.0.2" }
+        - { name: "roboshop.dev.user.APP_VERSION", value: "f-1.0.2" }
+        - { name: "roboshop.dev.payment.APP_VERSION", value: "f-1.0.2" }
+        - { name: "roboshop.dev.shipping.APP_VERSION", value: "f-1.0.2" }
 
