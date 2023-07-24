@@ -1,1 +1,2 @@
 COMPONENT: mongodb
+PROMETHEUS_MONITOR: no
