@@ -62,7 +62,7 @@
 
 - name: downloading app web content and Extract it
   ansible.builtin.unarchive:
-    src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    src: http://{{NEXUS_USER}}:{{NEXUS_PASS}}@NEXUS.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: /home/roboshop/{{COMPONENT}}-tmp
     remote_src: yes
   become_user: roboshop
