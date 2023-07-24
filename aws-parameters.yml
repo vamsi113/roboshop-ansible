@@ -23,7 +23,7 @@
         - { name: "roboshop.dev.shipping.CART_ENDPOINT", value: "cart-dev.roboshop.internal" }
         - { name: "roboshop.dev.shipping.DB_HOST", value: "mysql-dev.roboshop.internal" }
         - { name: "roboshop.dev.user.REDIS_HOST", value: "redis-dev.roboshop.internal" }
-        - { name: "roboshop.dev.user.MONGO_URL", value: "mongodb://mongodb-dev.roboshop.internal:27017/users" }
+        - { name: "roboshop.dev.user.MONGO", value: "mongodb://mongodb-dev.roboshop.internal:27017/users" }
 
        #- { name: "roboshop.prod.catalogue.MONGO_URL", value: "mongodb://mongodb-prod.roboshop.internal:27017/catalogue" } not using because of docdb
        #- { name: "roboshop.prod.cart.REDIS_HOST", value: "redis-prod.roboshop.internal" } not using because of elasticache
