@@ -5,7 +5,7 @@ Description=Shipping Service
 User=roboshop
 Environment=CART_ENDPOINT="{{lookup('aws_ssm', 'roboshop.{{ENV}}.shipping.CART_ENDPOINT', region='us-east-1')}}"
 Environment=DB_HOST="{{SECRETS.RDS_ENDPOINT}}"
-ExecStart=/bin/java Xms2900m -Xmx3300m -jar /home/roboshop/shipping/shipping.jar
+ExecStart=/bin/java -Xms2900m -Xmx3300m -jar /home/roboshop/shipping/shipping.jar
 SyslogIdentifier=shipping
 
 [Install]
